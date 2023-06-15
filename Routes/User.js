@@ -5,7 +5,7 @@ const FlightController = require('../controllers/FlightController');
 
 Router.get('/', UserController.GetAllUsers)
 
-Router.get('/:id', UserController.GetUserById)
+Router.get('/GetUserById/:id', UserController.GetUserById)
 
 Router.put('/UpdateDetails',UserController.UpdateUserDetails)
 
@@ -17,6 +17,6 @@ Router.get('/GetMyBookings/:userId',TicketController.GetBookingsByUserId)
 
 Router.get('/GetFlights/:date',FlightController.GetFlightsOnDate)
 
-Router.get('/GetFlightsInDateRange/:fromDate/:toDate',FlightController.GetFlightsOnDate)
+Router.get('/GetFlightsInDateRange',FlightController.GetFlightsInDateRange)
 
 module.exports = Router

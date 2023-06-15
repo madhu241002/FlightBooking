@@ -5,8 +5,7 @@ const Users = require('../models/user.model');
 
 exports.CreateTicket = async (req, res) => {
   
-    var ticket = new Tickets();
-    ticket.ticketId = await getNextSequence("tickets");
+    var ticket = new Tickets();  
     ticket.flightId = req.body.flightId;
     ticket.userId = req.body.userId;
     ticket.fare = req.body.fare;
@@ -31,13 +30,9 @@ exports.CreateTicket = async (req, res) => {
     }
 
     const count = await Tickets.where({flightId : ticket.flightId, active : 1}).count();
-    if(count === 0){
-        res.status(401).json({
-            message: "Ticket creation not successful "
-        })
-    }
     if(count < 60){
         try{
+            ticket.ticketId = await getNextSequence("tickets");
             await Tickets.create(ticket).then(ticket =>
                 res.status(200).json({
                 message: "Ticket successfully created",

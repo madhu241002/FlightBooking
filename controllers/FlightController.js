@@ -52,9 +52,6 @@ exports.CreateFlight = async (req, res) => {
         flight.source = req.body.source;
         flight.destination = req.body.destination;
         flight.journeyDateTime = req.body.journeyDateTime;
-        
-        flight.journeyDateTime.getTimezoneOffset();
-        console.log(flight);
 
         
         try {
